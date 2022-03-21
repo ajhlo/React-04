@@ -1,7 +1,22 @@
-import './App.css';
+import { useState } from "react";
+import View from "./View.js";
+import Form from "./Form.js";
+import "./App.css";
 
 const App = () => {
-  return <h1>Hei</h1>
+  const [inputs, setInputs] = useState({
+    firstname: "",
+    lastname: "",
+    phone: "",
+    message: ""
+  });
+
+  return (
+    <div className="App">
+      <Form functions={[inputs, setInputs]}/>
+      <View inputs={inputs} />
+    </div>
+  );
 }
 
 export default App;

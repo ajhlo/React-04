@@ -1,20 +1,54 @@
-import { useState } from "react";
-
-const Form = () => {
-    const [name, setName] = useState("");
+const Form = (props) => {
+  const [inputs, setInputs] = props.functions;
   
-    const handleChange = (event) => {
-      setMyCar(event.target.value)
-    }
-  
-    return (
-      <form>
-        <input name="firstName"></input>
-        <input name="lastName"></input>
-        <input name="phone"></input>
-        <textarea name="message"></textarea>        
-      </form> 
-    )
-  }
+  const handleChange = (e) => {
+    setInputs(prevState => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
+  };
 
-  export default Form;
+  return (
+    <>
+      <form> 
+        <div>
+          <input
+            type="text"
+            name="firstname"
+            placeholder="First name"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="lastname"
+            placeholder="Last name"
+            value={inputs.lastname}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            name="phone"
+            placeholder="Phone Number"
+            value={inputs.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <textarea
+            name="message"
+            placeholder="Message"
+            value={inputs.message}
+            onChange={handleChange}
+          />
+        </div>
+      </form>
+    </>
+  );
+}
+
+export default Form;
